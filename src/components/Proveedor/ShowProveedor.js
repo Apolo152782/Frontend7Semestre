@@ -9,7 +9,7 @@ import Stack from "@mui/material/Stack";
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-const url = "http://localhost:8080/api/proveedores";
+const url = "https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/proveedores";
 
 const ShowProveedores = () => {
   const theme = useTheme();

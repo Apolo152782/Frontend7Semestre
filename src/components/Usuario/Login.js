@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-import { 
-  TextField, 
-  Button, 
-  Box, 
-  Typography, 
-  Alert, 
-  Link,
-  Backdrop,
-  CircularProgress,
-  useMediaQuery,
-  useTheme
+import {
+    TextField,
+    Button,
+    Box,
+    Typography,
+    Alert,
+    Link,
+    Backdrop,
+    CircularProgress,
+    useMediaQuery,
+    useTheme
 } from '@mui/material';
 
 const Login = ({ onLoginSuccess }) => {
@@ -27,7 +27,7 @@ const Login = ({ onLoginSuccess }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:8080/api/login', {
+            const response = await fetch('https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -91,9 +91,9 @@ const Login = ({ onLoginSuccess }) => {
     };
 
     return (
-        <Box 
-            className="background-radial-gradient" 
-            sx={{ 
+        <Box
+            className="background-radial-gradient"
+            sx={{
                 minHeight: '100vh',
                 display: 'flex',
                 alignItems: 'center',
@@ -102,16 +102,16 @@ const Login = ({ onLoginSuccess }) => {
                 px: 2
             }}
         >
-            <Box 
-                sx={{ 
+            <Box
+                sx={{
                     width: '100%',
                     maxWidth: '1200px',
                     mx: 'auto',
                     px: isSmallScreen ? 2 : 4
                 }}
             >
-                <Box 
-                    sx={{ 
+                <Box
+                    sx={{
                         display: 'flex',
                         flexDirection: isSmallScreen ? 'column' : 'row',
                         alignItems: 'center',
@@ -119,17 +119,17 @@ const Login = ({ onLoginSuccess }) => {
                     }}
                 >
                     {/* Left Column - Welcome Message */}
-                    <Box 
-                        sx={{ 
+                    <Box
+                        sx={{
                             flex: 1,
                             textAlign: isSmallScreen ? 'center' : 'left',
                             mb: isSmallScreen ? 4 : 0,
                             px: isSmallScreen ? 2 : 0
                         }}
                     >
-                        <Typography 
-                            variant={isSmallScreen ? 'h4' : 'h2'} 
-                            sx={{ 
+                        <Typography
+                            variant={isSmallScreen ? 'h4' : 'h2'}
+                            sx={{
                                 fontWeight: 'bold',
                                 color: '#e5a60d',
                                 mb: 2
@@ -137,18 +137,18 @@ const Login = ({ onLoginSuccess }) => {
                         >
                             STACKFLOW
                         </Typography>
-                        <Typography 
-                            variant={isSmallScreen ? 'h6' : 'h5'} 
-                            sx={{ 
+                        <Typography
+                            variant={isSmallScreen ? 'h6' : 'h5'}
+                            sx={{
                                 color: 'hsl(218, 81%, 95%)',
                                 mb: 1
                             }}
                         >
                             El mejor sistema de ventas
                         </Typography>
-                        <Typography 
-                            variant={isSmallScreen ? 'h5' : 'h4'} 
-                            sx={{ 
+                        <Typography
+                            variant={isSmallScreen ? 'h5' : 'h4'}
+                            sx={{
                                 color: '#c18cf3',
                                 fontWeight: 'bold'
                             }}
@@ -158,8 +158,8 @@ const Login = ({ onLoginSuccess }) => {
                     </Box>
 
                     {/* Right Column - Login Form */}
-                    <Box 
-                        sx={{ 
+                    <Box
+                        sx={{
                             flex: 1,
                             position: 'relative',
                             maxWidth: isSmallScreen ? '100%' : '400px',
@@ -167,7 +167,7 @@ const Login = ({ onLoginSuccess }) => {
                         }}
                     >
                         {/* Decorative shapes */}
-                        <Box 
+                        <Box
                             sx={{
                                 position: 'absolute',
                                 height: '220px',
@@ -180,7 +180,7 @@ const Login = ({ onLoginSuccess }) => {
                                 display: isSmallScreen ? 'none' : 'block'
                             }}
                         />
-                        <Box 
+                        <Box
                             sx={{
                                 position: 'absolute',
                                 borderRadius: '38% 62% 63% 37% / 70% 33% 67% 30%',
@@ -207,16 +207,16 @@ const Login = ({ onLoginSuccess }) => {
                             }}
                         >
                             <form onSubmit={handleSubmit}>
-                                <Typography 
-                                    variant={isSmallScreen ? 'h5' : 'h4'} 
-                                    component="h1" 
-                                    gutterBottom 
+                                <Typography
+                                    variant={isSmallScreen ? 'h5' : 'h4'}
+                                    component="h1"
+                                    gutterBottom
                                     align="center"
                                     sx={{ mb: 3 }}
                                 >
                                     Iniciar sesión
                                 </Typography>
-                                
+
                                 <TextField
                                     label="Correo electrónico"
                                     variant="outlined"
@@ -227,7 +227,7 @@ const Login = ({ onLoginSuccess }) => {
                                     margin="normal"
                                     size={isSmallScreen ? 'small' : 'medium'}
                                 />
-                                
+
                                 <TextField
                                     label="Contraseña"
                                     variant="outlined"
@@ -238,14 +238,14 @@ const Login = ({ onLoginSuccess }) => {
                                     margin="normal"
                                     size={isSmallScreen ? 'small' : 'medium'}
                                 />
-                                
+
                                 <Button
                                     type="submit"
                                     variant="contained"
                                     color="primary"
                                     fullWidth
-                                    sx={{ 
-                                        mt: 2, 
+                                    sx={{
+                                        mt: 2,
                                         mb: 2,
                                         py: isSmallScreen ? 1 : 1.5,
                                         fontSize: isSmallScreen ? '0.875rem' : '1rem'
@@ -253,16 +253,16 @@ const Login = ({ onLoginSuccess }) => {
                                 >
                                     Iniciar sesión
                                 </Button>
-                                
+
                                 {message && (
-                                    <Alert 
+                                    <Alert
                                         severity={message === 'Login exitoso' ? 'success' : 'error'}
                                         sx={{ mb: 2 }}
                                     >
                                         {message}
                                     </Alert>
                                 )}
-                                
+
                                 <Box textAlign="center" sx={{ mt: 2 }}>
                                     <Typography variant="body2" sx={{ mb: 1 }}>
                                         ¿No tienes una cuenta?

@@ -17,7 +17,7 @@ const ShowDetalleVenta = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-  
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
@@ -26,7 +26,7 @@ const ShowDetalleVenta = () => {
     const fetchDetallesVenta = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/detalleventa/listar"
+          "https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/detalleventa/listar"
         );
         const ventasOrdenadas = response.data.sort(
           (a, b) => new Date(b.fecha) - new Date(a.fecha)
@@ -82,7 +82,7 @@ const ShowDetalleVenta = () => {
       <div className="table-wrapper">
         <div className="table-title d-flex flex-column flex-md-row justify-content-start align-items-center align-items-md-start gap-3 gap-md-0">
           <h3 className="m-0 text-center text-md-start">Tabla de Detalle Ventas</h3>
-          
+
           <div className="d-flex flex-column flex-md-row align-items-center w-100 gap-3">
             <div className="input-group" style={{ maxWidth: "400px", width: "100%" }}>
               <input
@@ -114,7 +114,7 @@ const ShowDetalleVenta = () => {
                 <i className="bi bi-search"></i>
               </span>
             </div>
-            
+
             <button
               className="btn btn-create"
               onClick={exportarAExcel}
@@ -133,7 +133,7 @@ const ShowDetalleVenta = () => {
             </button>
           </div>
         </div>
-        
+
         <div className="table-responsive custom-table" style={{ overflowX: "auto" }}>
           <table className="table mb-0" style={{ minWidth: isMobile ? "600px" : "100%" }}>
             <thead>
@@ -162,7 +162,7 @@ const ShowDetalleVenta = () => {
             </tbody>
           </table>
         </div>
-        
+
         {totalPages > 1 && (
           <div className="d-flex justify-content-center align-items-center mt-3 mb-3">
             <Stack spacing={1}>

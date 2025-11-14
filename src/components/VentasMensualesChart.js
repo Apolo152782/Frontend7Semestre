@@ -71,7 +71,7 @@ const VentasMensualesChart = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/graficos/ventas-mensuales');
+                const response = await axios.get('https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/graficos/ventas-mensuales');
                 const data = response.data;
 
                 setChartData({

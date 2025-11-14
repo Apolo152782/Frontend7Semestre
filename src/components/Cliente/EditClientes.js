@@ -26,11 +26,11 @@ const EditClientes = ({
             onCancel={closeModal}
             width={isMobile ? '90%' : isTablet ? '70%' : '35%'}
             footer={[
-                <Button 
-                    key="cancel" 
-                    onClick={closeModal} 
-                    style={{ 
-                        backgroundColor: '#d8243f', 
+                <Button
+                    key="cancel"
+                    onClick={closeModal}
+                    style={{
+                        backgroundColor: '#d8243f',
                         color: '#fff',
                         minWidth: isMobile ? '100%' : '120px',
                         marginBottom: isMobile ? '8px' : '0'
@@ -38,11 +38,11 @@ const EditClientes = ({
                 >
                     Cancelar
                 </Button>,
-                <Button 
-                    key="save" 
-                    onClick={saveChanges} 
-                    style={{ 
-                        backgroundColor: '#28a745', 
+                <Button
+                    key="save"
+                    onClick={saveChanges}
+                    style={{
+                        backgroundColor: '#28a745',
                         color: '#fff',
                         minWidth: isMobile ? '100%' : '120px'
                     }}
@@ -147,7 +147,7 @@ const EditClientes = ({
                 </div>
 
                 {errorMessage && (
-                    <div style={{ 
+                    <div style={{
                         padding: '12px',
                         marginBottom: '16px',
                         backgroundColor: '#fff2f0',

@@ -99,7 +99,7 @@ const VentaFormTemp = () => {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:8080/api/productos/buscar?nombre=${encodeURIComponent(nombre)}`);
+      const response = await fetch(`https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/productos/buscar?nombre=${encodeURIComponent(nombre)}`);
       if (response.ok) {
         const data = await response.json();
         setProductosEncontrados(data);

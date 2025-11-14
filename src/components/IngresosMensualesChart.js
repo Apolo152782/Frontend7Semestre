@@ -59,7 +59,7 @@ const IngresosMensualesChart = () => {
         const fetchIngresosPorMes = async () => {
             try {
 
-                const response = await axios.get('http://localhost:8080/ventas/ingresos-mensuales');
+                const response = await axios.get('https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/ventas/ingresos-mensuales');
 
 
                 // Ajuste para mapear correctamente los datos desde la API

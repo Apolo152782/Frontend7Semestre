@@ -9,7 +9,7 @@ import Stack from "@mui/material/Stack";
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-const url = "http://localhost:8080/api/clientes";
+const url = "https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/clientes";
 
 const ShowCliente = ({ userData }) => {
   const theme = useTheme();
@@ -163,57 +163,57 @@ const ShowCliente = ({ userData }) => {
     <div className="container-fluid show-cliente-container mt-5 mt-md-5 px-2 px-md-4">
       <div className="table-wrapper">
         <div className="table-title d-flex justify-content-start align-items-center">
-          <h3 className="m-0">Tabla de Clientes</h3>  
-            <button
-              className="btn btn-create ms-5"
-              onClick={() => openModal()}
-              style={{
-                backgroundColor: "#3f2569",
-                color: "white",
-                padding: "8px 18px",
-                fontSize: "14px",
-                borderRadius: "22px",
-                width: isSmallScreen ? "100%" : "auto"
-              }}
-            >
-              Añadir Cliente
-            </button>
-            
-            <div className="mb-3 ms-1" style={{ flexGrow: 1 }}></div>
-            <div
+          <h3 className="m-0">Tabla de Clientes</h3>
+          <button
+            className="btn btn-create ms-5"
+            onClick={() => openModal()}
+            style={{
+              backgroundColor: "#3f2569",
+              color: "white",
+              padding: "8px 18px",
+              fontSize: "14px",
+              borderRadius: "22px",
+              width: isSmallScreen ? "100%" : "auto"
+            }}
+          >
+            Añadir Cliente
+          </button>
+
+          <div className="mb-3 ms-1" style={{ flexGrow: 1 }}></div>
+          <div
             className="input-group"
             style={{ width: "400px", marginLeft: "20px" }}
           >
-              <input
-                type="text"
-                placeholder="Buscar..."
-                className="form-control"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                style={{
-                  borderRadius: "25px",
-                  color: "black",
-                  border: "1px solid #6c757d",
-                  paddingRight: "40px",
-                }}
-              />
-              <span
-                className="input-group-text"
-                style={{
-                  borderRadius: "25px",
-                  border: "none",
-                  backgroundColor: "white",
-                  position: "absolute",
-                  right: "10px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                }}
-              >
-                <i className="bi bi-search"></i>
-              </span>
-            </div>
+            <input
+              type="text"
+              placeholder="Buscar..."
+              className="form-control"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{
+                borderRadius: "25px",
+                color: "black",
+                border: "1px solid #6c757d",
+                paddingRight: "40px",
+              }}
+            />
+            <span
+              className="input-group-text"
+              style={{
+                borderRadius: "25px",
+                border: "none",
+                backgroundColor: "white",
+                position: "absolute",
+                right: "10px",
+                top: "50%",
+                transform: "translateY(-50%)",
+              }}
+            >
+              <i className="bi bi-search"></i>
+            </span>
+          </div>
         </div>
-        
+
         <div className="table-responsive" style={{ overflowX: "auto" }}>
           <table className="table mb-0 custom-table">
             <thead>
@@ -282,7 +282,7 @@ const ShowCliente = ({ userData }) => {
             </tbody>
           </table>
         </div>
-        
+
         {totalPages > 1 && (
           <div className="d-flex justify-content-center align-items-center mt-3 mb-3">
             <Stack spacing={1}>
@@ -297,7 +297,7 @@ const ShowCliente = ({ userData }) => {
             </Stack>
           </div>
         )}
-        
+
         {isModalOpen && (
           <EditClientes
             cliente={cliente}

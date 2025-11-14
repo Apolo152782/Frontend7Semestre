@@ -47,17 +47,17 @@ function FormularioPrediccion() {
   const validate = () => {
     const newErrors = {};
     if (!form.genero) newErrors.genero = 'Seleccione el género';
-    if (!form.frecuenciaCompra || form.frecuenciaCompra < 0) 
+    if (!form.frecuenciaCompra || form.frecuenciaCompra < 0)
       newErrors.frecuenciaCompra = 'Ingrese un valor válido';
-    if (!form.montoPromedio || form.montoPromedio < 0) 
+    if (!form.montoPromedio || form.montoPromedio < 0)
       newErrors.montoPromedio = 'Ingrese un monto válido';
-    if (!form.ultimaCompra || form.ultimaCompra < 0) 
+    if (!form.ultimaCompra || form.ultimaCompra < 0)
       newErrors.ultimaCompra = 'Ingrese días válidos';
-    if (!form.descuentoRecibido) 
+    if (!form.descuentoRecibido)
       newErrors.descuentoRecibido = 'Seleccione una opción';
-    if (!form.metodoPago) 
+    if (!form.metodoPago)
       newErrors.metodoPago = 'Seleccione método de pago';
-    if (!form.satisfaccion || form.satisfaccion < 1 || form.satisfaccion > 10) 
+    if (!form.satisfaccion || form.satisfaccion < 1 || form.satisfaccion > 10)
       newErrors.satisfaccion = 'Ingrese valor entre 1 y 10';
 
     setErrors(newErrors);
@@ -82,7 +82,7 @@ function FormularioPrediccion() {
 
     try {
       setLoading(true);
-      const response = await axios.post('http://localhost:8080/api/predecir', form);
+      const response = await axios.post('https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/predecir', form);
       setResultado(response.data);
     } catch (err) {
       setError(err.response?.data?.message || "Error al procesar la predicción");
@@ -93,22 +93,22 @@ function FormularioPrediccion() {
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
-      <Box 
-        component="form" 
-        onSubmit={handleSubmit} 
-        sx={{ 
-          mt: 3, 
-          p: isMobile ? 2 : 4, 
-          boxShadow: 3, 
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          mt: 3,
+          p: isMobile ? 2 : 4,
+          boxShadow: 3,
           borderRadius: 2,
           backgroundColor: 'background.paper'
         }}
       >
-        <Typography 
-          variant="h4" 
-          align="center" 
-          gutterBottom 
-          sx={{ 
+        <Typography
+          variant="h4"
+          align="center"
+          gutterBottom
+          sx={{
             mb: 3,
             color: 'primary.main',
             fontWeight: 'bold'
@@ -275,11 +275,11 @@ function FormularioPrediccion() {
         </Grid>
 
         <Box textAlign="center" mt={4}>
-          <Button 
-            type="submit" 
-            variant="contained" 
+          <Button
+            type="submit"
+            variant="contained"
             size="large"
-            sx={{ 
+            sx={{
               px: 4,
               py: 1.5,
               fontSize: '1.1rem',
@@ -299,8 +299,8 @@ function FormularioPrediccion() {
         </Box>
 
         {resultado && (
-          <Alert 
-            severity="success" 
+          <Alert
+            severity="success"
             sx={{ mt: 3 }}
             icon={false}
           >
@@ -312,8 +312,8 @@ function FormularioPrediccion() {
         )}
 
         {error && (
-          <Alert 
-            severity="error" 
+          <Alert
+            severity="error"
             sx={{ mt: 3 }}
           >
             <Typography variant="subtitle1">{error}</Typography>

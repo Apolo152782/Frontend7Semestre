@@ -70,7 +70,7 @@ const PrediccionPorDni = () => {
     setError('');
 
     try {
-      const response = await fetch(`http://localhost:8080/api/predecir/dni/${dni}`);
+      const response = await fetch(`https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/predecir/dni/${dni}`);
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Error al obtener la predicción');
@@ -78,13 +78,13 @@ const PrediccionPorDni = () => {
 
       const data = await response.json();
       if (!data) throw new Error('No se encontraron datos para este cliente');
-      
+
       const clienteData = {
         ...data,
         dni: dni,
         fechaConsulta: new Date().toLocaleString()
       };
-      
+
       setInfoCliente(clienteData);
       guardarEnHistorial(clienteData);
     } catch (err) {
@@ -170,13 +170,13 @@ const PrediccionPorDni = () => {
                 <PersonIcon sx={{ verticalAlign: 'middle', mr: 1 }} />
                 Información del Cliente
               </Typography>
-              <Chip 
-                label={infoCliente.resultado === 'Si' ? 'Cliente Activo' : 'Cliente Inactivo'} 
-                color={infoCliente.resultado === 'Si' ? 'success' : 'error'} 
+              <Chip
+                label={infoCliente.resultado === 'Si' ? 'Cliente Activo' : 'Cliente Inactivo'}
+                color={infoCliente.resultado === 'Si' ? 'success' : 'error'}
                 variant="outlined"
               />
             </Box>
-            
+
             <Divider sx={{ my: 2 }} />
 
             <Grid container spacing={2}>
@@ -215,15 +215,15 @@ const PrediccionPorDni = () => {
               <Typography variant="h6" gutterBottom>
                 Predicción de Compra
               </Typography>
-              <Alert 
+              <Alert
                 severity={infoCliente.resultado === 'Si' ? 'success' : 'warning'}
                 sx={{ maxWidth: 400, mx: 'auto' }}
               >
                 <Typography>
                   <strong>Probabilidad:</strong> {(infoCliente.probabilidad * 100).toFixed(2)}%
                 </Typography>
-                {infoCliente.resultado === 'Si' 
-                  ? 'Es probable que este cliente realice una nueva compra.' 
+                {infoCliente.resultado === 'Si'
+                  ? 'Es probable que este cliente realice una nueva compra.'
                   : 'Es poco probable que este cliente realice una nueva compra en el corto plazo.'}
               </Alert>
             </Box>
@@ -243,10 +243,10 @@ const PrediccionPorDni = () => {
                   <RefreshIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
-              <Button 
-                variant="outlined" 
-                color="error" 
-                size="small" 
+              <Button
+                variant="outlined"
+                color="error"
+                size="small"
                 onClick={limpiarHistorial}
                 startIcon={<DeleteIcon />}
                 disabled={historialPredicciones.length === 0}
@@ -273,9 +273,9 @@ const PrediccionPorDni = () => {
                 </TableHead>
                 <TableBody>
                   {historialPredicciones.map((item, index) => (
-                    <TableRow 
-                      key={index} 
-                      hover 
+                    <TableRow
+                      key={index}
+                      hover
                       onClick={() => {
                         setDni(item.dni);
                         setInfoCliente(item);
@@ -286,10 +286,10 @@ const PrediccionPorDni = () => {
                       {!isMobile && <TableCell>{item.nombre || 'N/A'}</TableCell>}
                       <TableCell align="right">{formatearMoneda(item.montoPromedio)}</TableCell>
                       <TableCell align="center">
-                        <Chip 
-                          label={item.resultado} 
-                          size="small" 
-                          color={item.resultado === 'Si' ? 'success' : 'error'} 
+                        <Chip
+                          label={item.resultado}
+                          size="small"
+                          color={item.resultado === 'Si' ? 'success' : 'error'}
                           variant="outlined"
                         />
                       </TableCell>

@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { useNavigate } from 'react-router-dom';
-import { 
-  FormControl, 
-  InputLabel, 
-  OutlinedInput, 
-  InputAdornment, 
-  IconButton, 
-  TextField, 
-  MenuItem,
-  Box,
-  Typography,
-  Button,
-  useMediaQuery,
-  useTheme
+import {
+    FormControl,
+    InputLabel,
+    OutlinedInput,
+    InputAdornment,
+    IconButton,
+    TextField,
+    MenuItem,
+    Box,
+    Typography,
+    Button,
+    useMediaQuery,
+    useTheme
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
@@ -38,7 +38,7 @@ const CreateUser = () => {
             rol
         };
 
-        const response = await fetch('http://localhost:8080/api/createUser', {
+        const response = await fetch('https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/createUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ const CreateUser = () => {
     };
 
     return (
-        <Box 
+        <Box
             className="background-radial-gradient"
             sx={{
                 minHeight: '100vh',
@@ -114,7 +114,7 @@ const CreateUser = () => {
                 Regresar al inicio
             </Button>
 
-            <Box 
+            <Box
                 sx={{
                     width: '100%',
                     maxWidth: '1200px',
@@ -126,7 +126,7 @@ const CreateUser = () => {
                 }}
             >
                 {/* Left Column - Welcome Message */}
-                <Box 
+                <Box
                     sx={{
                         flex: 1,
                         textAlign: isSmallScreen ? 'center' : 'left',
@@ -134,9 +134,9 @@ const CreateUser = () => {
                         px: isSmallScreen ? 2 : 0
                     }}
                 >
-                    <Typography 
-                        variant={isSmallScreen ? 'h4' : 'h2'} 
-                        sx={{ 
+                    <Typography
+                        variant={isSmallScreen ? 'h4' : 'h2'}
+                        sx={{
                             fontWeight: 'bold',
                             color: '#e5a60d',
                             mb: 2
@@ -144,18 +144,18 @@ const CreateUser = () => {
                     >
                         STACKFLOW
                     </Typography>
-                    <Typography 
-                        variant={isSmallScreen ? 'h6' : 'h5'} 
-                        sx={{ 
+                    <Typography
+                        variant={isSmallScreen ? 'h6' : 'h5'}
+                        sx={{
                             color: 'hsl(218, 81%, 95%)',
                             mb: 1
                         }}
                     >
                         El mejor sistema de ventas
                     </Typography>
-                    <Typography 
-                        variant={isSmallScreen ? 'h5' : 'h4'} 
-                        sx={{ 
+                    <Typography
+                        variant={isSmallScreen ? 'h5' : 'h4'}
+                        sx={{
                             color: '#c18cf3',
                             fontWeight: 'bold'
                         }}
@@ -165,8 +165,8 @@ const CreateUser = () => {
                 </Box>
 
                 {/* Right Column - Form */}
-                <Box 
-                    sx={{ 
+                <Box
+                    sx={{
                         flex: 1,
                         position: 'relative',
                         maxWidth: isSmallScreen ? '100%' : '500px',
@@ -176,7 +176,7 @@ const CreateUser = () => {
                     {/* Decorative shapes - Hidden on small screens */}
                     {!isSmallScreen && (
                         <>
-                            <Box 
+                            <Box
                                 sx={{
                                     position: 'absolute',
                                     height: '220px',
@@ -188,7 +188,7 @@ const CreateUser = () => {
                                     zIndex: 1
                                 }}
                             />
-                            <Box 
+                            <Box
                                 sx={{
                                     position: 'absolute',
                                     borderRadius: '38% 62% 63% 37% / 70% 33% 67% 30%',
@@ -215,10 +215,10 @@ const CreateUser = () => {
                             zIndex: 2
                         }}
                     >
-                        <Typography 
-                            variant={isSmallScreen ? 'h5' : 'h4'} 
-                            component="h1" 
-                            gutterBottom 
+                        <Typography
+                            variant={isSmallScreen ? 'h5' : 'h4'}
+                            component="h1"
+                            gutterBottom
                             align="center"
                             sx={{ mb: 4 }}
                         >

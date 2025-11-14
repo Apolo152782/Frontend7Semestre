@@ -22,7 +22,7 @@ const EditProducto = ({
         const fetchProveedores = async () => {
             try {
                 setLoading(true);
-                const respuesta = await axios.get('http://localhost:8080/api/proveedores');
+                const respuesta = await axios.get('https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/proveedores');
                 setProveedores(respuesta.data);
             } catch (error) {
                 console.error('Error fetching proveedores:', error);
@@ -48,8 +48,8 @@ const EditProducto = ({
                 <Button
                     key="cancel"
                     onClick={closeModal}
-                    style={{ 
-                        backgroundColor: '#d8243f', 
+                    style={{
+                        backgroundColor: '#d8243f',
                         color: '#fff',
                         minWidth: isMobile ? '100%' : '120px',
                         marginBottom: isMobile ? '8px' : '0'
@@ -60,8 +60,8 @@ const EditProducto = ({
                 <Button
                     key="save"
                     onClick={saveChanges}
-                    style={{ 
-                        backgroundColor: '#28a745', 
+                    style={{
+                        backgroundColor: '#28a745',
                         color: '#fff',
                         minWidth: isMobile ? '100%' : '120px'
                     }}
@@ -153,7 +153,7 @@ const EditProducto = ({
                 </div>
 
                 {errorMessage && (
-                    <div style={{ 
+                    <div style={{
                         padding: '12px',
                         marginBottom: '16px',
                         backgroundColor: '#fff2f0',

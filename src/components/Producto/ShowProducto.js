@@ -71,7 +71,7 @@ const ShowProducto = () => {
   };
 
   const getProveedores = async () => {
-    const respuesta = await axios.get("http://localhost:8080/api/proveedores");
+    const respuesta = await axios.get("https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/proveedores");
     setProveedores(respuesta.data);
   };
 
@@ -176,7 +176,7 @@ const ShowProducto = () => {
       <div className="table-wrapper">
         <div className={`table-title d-flex ${isSmallScreen ? 'flex-column align-items-start gap-3' : 'justify-content-start align-items-center'}`}>
           <h3 className="m-0">Tabla de Productos</h3>
-          
+
           <button
             className={`btn btn-create ${isSmallScreen ? 'w-100' : 'ms-5'}`}
             onClick={() => openModal()}
@@ -192,7 +192,7 @@ const ShowProducto = () => {
           </button>
 
           <div className={`search-container ${isSmallScreen ? 'w-100 mt-2' : 'ms-3'}`}>
-            <div 
+            <div
               className="input-group"
               style={{
                 width: isSmallScreen ? "100%" : "350px",
@@ -229,7 +229,7 @@ const ShowProducto = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="table-responsive mt-3" style={{ overflowX: "auto" }}>
           <table className="table mb-0 custom-table">
             <thead>
@@ -263,7 +263,7 @@ const ShowProducto = () => {
                       <button
                         className="btn btn-outline-primary btn-sm"
                         onClick={() => openModal(producto, true)}
-                        style={{ 
+                        style={{
                           minWidth: isSmallScreen ? "36px" : "30px",
                           padding: isSmallScreen ? "0.5rem" : "0.25rem",
                           fontSize: isSmallScreen ? "1rem" : "0.875rem"
@@ -275,7 +275,7 @@ const ShowProducto = () => {
                       <button
                         className="btn btn-outline-danger btn-sm"
                         onClick={() => deleteProducto(producto.id)}
-                        style={{ 
+                        style={{
                           minWidth: isSmallScreen ? "36px" : "30px",
                           padding: isSmallScreen ? "0.5rem" : "0.25rem",
                           fontSize: isSmallScreen ? "1rem" : "0.875rem"
@@ -291,7 +291,7 @@ const ShowProducto = () => {
             </tbody>
           </table>
         </div>
-        
+
         {totalPages > 1 && (
           <div className="d-flex justify-content-center align-items-center mt-3 mb-3">
             <Stack spacing={1}>
@@ -307,7 +307,7 @@ const ShowProducto = () => {
             </Stack>
           </div>
         )}
-        
+
         {isModalOpen && (
           <EditProducto
             producto={producto}
@@ -333,7 +333,7 @@ const ShowProducto = () => {
           <Alert
             onClose={() => setOpenSnackbar(false)}
             severity={snackbarSeverity}
-            sx={{ 
+            sx={{
               width: isSmallScreen ? "90%" : "auto",
               fontSize: isSmallScreen ? "0.9rem" : "1rem"
             }}

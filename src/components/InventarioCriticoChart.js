@@ -58,7 +58,7 @@ const InventarioCriticoChart = () => {
     useEffect(() => {
         const fetchCriticalStock = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/productos/stock-critico');
+                const response = await axios.get('https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/productos/stock-critico');
 
                 // Ajuste para mapear los datos correctamente desde `Producto`
                 setChartData({
