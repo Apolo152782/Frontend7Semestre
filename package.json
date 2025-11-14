@@ -2,6 +2,7 @@
   "name": "proyecto5a",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://frontend-stackflow-bkh3guh3aud2ghcc.canadacentral-01.azurewebsites.net",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
