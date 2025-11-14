@@ -2,6 +2,7 @@
     border: none;
 }
 
+
 .custom-table thead th {
     background-color: #fff9c4;
     border-bottom: none;
@@ -62,4 +63,52 @@
 .gap-x {
     gap: 20px;
 
+}
+
+body {
+    padding-top: 50px;
+}
+
+
+
+
+.dropdown-menu {
+    cursor: pointer;
+    border: 1px solid #ced4da;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item:hover {
+    background-color: #908dc7;
+    color: white;
+}
+
+
+
+
+
+.dropdown-item {
+    padding: 8px 16px;
+    white-space: nowrap;
+    /* Evita saltos de línea */
+}
+
+
+
+
+/* Asegura que el input tenga espacio debajo */
+.input-codigo {
+    margin-bottom: 2px;
+}
+
+/* Estilo para las sugerencias */
+.dropdown-menu {
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+}
+
+.dropdown-item {
+    padding: 8px 12px;
+    font-size: 14px;
 }

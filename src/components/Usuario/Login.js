@@ -2,35 +2,69 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { 
+  TextField, 
+  Button, 
+  Box, 
+  Typography, 
+  Alert, 
+  Link,
+  Backdrop,
+  CircularProgress,
+  useMediaQuery,
+  useTheme
+} from '@mui/material';
 
 const Login = ({ onLoginSuccess }) => {
     const [correo, setCorreo] = useState('');
     const [pass, setPass] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:8080/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-                correo: correo,
-                pass: pass,
-            }),
-        });
+        try {
+            const response = await fetch('http://localhost:8080/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    correo: correo,
+                    pass: pass,
+                }),
+            });
 
-        if (response.ok) {
+            const text = await response.text();
+            let data;
+
+            try {
+                data = JSON.parse(text);
+            } catch (err) {
+                throw new Error(text);
+            }
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Error en las credenciales');
+            }
+
+            setLoading(true);
             setMessage('Login exitoso');
-            onLoginSuccess();
-        } else {
-            setMessage('Credenciales incorrectas');
+
+            setTimeout(() => {
+                localStorage.setItem('usuario', JSON.stringify({ nombre: data.nombre }));
+                onLoginSuccess(data);
+            }, 1500);
+
+        } catch (error) {
+            setMessage(error.message || 'Error de conexión con el servidor');
+            console.error('Error:', error);
         }
     };
 
-    // Funcion que valida el PIN
     const requestPin = () => {
         Swal.fire({
             title: 'Ingrese el PIN',
@@ -48,7 +82,7 @@ const Login = ({ onLoginSuccess }) => {
             preConfirm: (pin) => {
                 if (pin === '1234') {
                     Swal.fire('Acceso concedido', '', 'success');
-                    navigate('/Usuario/CreateUser'); // lleva a la ruta de registro al ingresar el pin correcto
+                    navigate('/Usuario/CreateUser');
                 } else {
                     Swal.showValidationMessage('PIN incorrecto. Inténtelo de nuevo.');
                 }
@@ -57,71 +91,211 @@ const Login = ({ onLoginSuccess }) => {
     };
 
     return (
-        <section className="background-radial-gradient">
-            <div className="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-                <div className="row gx-lg-5 align-items-center mb-5">
-                    <div className="col-lg-6 mb-5 mb-lg-0">
-                        <h1 className="my-5 display-5 fw-bold ls-tight" style={{ color: 'hsl(218, 81%, 95%)' }}>
-                            El mejor sistema de ventas <br />
-                            <span style={{ color: 'hsl(218, 81%, 75%)' }}>para tu negocio</span>
-                        </h1>
-                    </div>
-                    <div className="col-lg-6 mb-5 mb-lg-0 position-relative">
-                        <div id="radius-shape-1" className="position-absolute rounded-circle shadow-5-strong"></div>
-                        <div id="radius-shape-2" className="position-absolute shadow-5-strong"></div>
+        <Box 
+            className="background-radial-gradient" 
+            sx={{ 
+                minHeight: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                py: isSmallScreen ? 2 : 5,
+                px: 2
+            }}
+        >
+            <Box 
+                sx={{ 
+                    width: '100%',
+                    maxWidth: '1200px',
+                    mx: 'auto',
+                    px: isSmallScreen ? 2 : 4
+                }}
+            >
+                <Box 
+                    sx={{ 
+                        display: 'flex',
+                        flexDirection: isSmallScreen ? 'column' : 'row',
+                        alignItems: 'center',
+                        gap: 4
+                    }}
+                >
+                    {/* Left Column - Welcome Message */}
+                    <Box 
+                        sx={{ 
+                            flex: 1,
+                            textAlign: isSmallScreen ? 'center' : 'left',
+                            mb: isSmallScreen ? 4 : 0,
+                            px: isSmallScreen ? 2 : 0
+                        }}
+                    >
+                        <Typography 
+                            variant={isSmallScreen ? 'h4' : 'h2'} 
+                            sx={{ 
+                                fontWeight: 'bold',
+                                color: '#e5a60d',
+                                mb: 2
+                            }}
+                        >
+                            STACKFLOW
+                        </Typography>
+                        <Typography 
+                            variant={isSmallScreen ? 'h6' : 'h5'} 
+                            sx={{ 
+                                color: 'hsl(218, 81%, 95%)',
+                                mb: 1
+                            }}
+                        >
+                            El mejor sistema de ventas
+                        </Typography>
+                        <Typography 
+                            variant={isSmallScreen ? 'h5' : 'h4'} 
+                            sx={{ 
+                                color: '#c18cf3',
+                                fontWeight: 'bold'
+                            }}
+                        >
+                            para tu NEGOCIO
+                        </Typography>
+                    </Box>
 
-                        <div className="card bg-glass">
-                            <div className="card-body px-4 py-5 px-md-5">
-                                <form onSubmit={handleSubmit}>
-                                    <h1>Inicie sesión</h1><br />
-                                    <div className="form-outline mb-4">
-                                        <input
-                                            type="email"
-                                            className="form-control"
-                                            value={correo}
-                                            onChange={(e) => setCorreo(e.target.value)}
-                                            required
-                                        />
-                                        <label className="form-label">Correo electrónico</label>
-                                    </div>
-                                    <div className="form-outline mb-4">
-                                        <input
-                                            type="password"
-                                            className="form-control"
-                                            value={pass}
-                                            onChange={(e) => setPass(e.target.value)}
-                                            required
-                                        />
-                                        <label className="form-label">Contraseña</label>
-                                    </div>
-                                    <button
-                                        type="submit"
-                                        className={`btn btn-primary btn-block mb-4`}
+                    {/* Right Column - Login Form */}
+                    <Box 
+                        sx={{ 
+                            flex: 1,
+                            position: 'relative',
+                            maxWidth: isSmallScreen ? '100%' : '400px',
+                            minWidth: isSmallScreen ? 'auto' : '350px'
+                        }}
+                    >
+                        {/* Decorative shapes */}
+                        <Box 
+                            sx={{
+                                position: 'absolute',
+                                height: '220px',
+                                width: '220px',
+                                top: '-60px',
+                                left: '-130px',
+                                background: 'radial-gradient(#44006b, #ad1fff)',
+                                borderRadius: '50%',
+                                zIndex: 1,
+                                display: isSmallScreen ? 'none' : 'block'
+                            }}
+                        />
+                        <Box 
+                            sx={{
+                                position: 'absolute',
+                                borderRadius: '38% 62% 63% 37% / 70% 33% 67% 30%',
+                                bottom: '-60px',
+                                right: '-90px',
+                                width: '300px',
+                                height: '300px',
+                                background: 'radial-gradient(#44006b, #ad1fff)',
+                                zIndex: 1,
+                                display: isSmallScreen ? 'none' : 'block'
+                            }}
+                        />
+
+                        {/* Login Form */}
+                        <Box
+                            sx={{
+                                backgroundColor: 'white',
+                                padding: isSmallScreen ? 3 : 4,
+                                borderRadius: 3,
+                                boxShadow: 4,
+                                width: '100%',
+                                position: 'relative',
+                                zIndex: 2
+                            }}
+                        >
+                            <form onSubmit={handleSubmit}>
+                                <Typography 
+                                    variant={isSmallScreen ? 'h5' : 'h4'} 
+                                    component="h1" 
+                                    gutterBottom 
+                                    align="center"
+                                    sx={{ mb: 3 }}
+                                >
+                                    Iniciar sesión
+                                </Typography>
+                                
+                                <TextField
+                                    label="Correo electrónico"
+                                    variant="outlined"
+                                    type="email"
+                                    value={correo}
+                                    onChange={(e) => setCorreo(e.target.value)}
+                                    fullWidth
+                                    margin="normal"
+                                    size={isSmallScreen ? 'small' : 'medium'}
+                                />
+                                
+                                <TextField
+                                    label="Contraseña"
+                                    variant="outlined"
+                                    type="password"
+                                    value={pass}
+                                    onChange={(e) => setPass(e.target.value)}
+                                    fullWidth
+                                    margin="normal"
+                                    size={isSmallScreen ? 'small' : 'medium'}
+                                />
+                                
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="primary"
+                                    fullWidth
+                                    sx={{ 
+                                        mt: 2, 
+                                        mb: 2,
+                                        py: isSmallScreen ? 1 : 1.5,
+                                        fontSize: isSmallScreen ? '0.875rem' : '1rem'
+                                    }}
+                                >
+                                    Iniciar sesión
+                                </Button>
+                                
+                                {message && (
+                                    <Alert 
+                                        severity={message === 'Login exitoso' ? 'success' : 'error'}
+                                        sx={{ mb: 2 }}
                                     >
-                                        Iniciar sesión
-                                    </button>
-                                    {message && (
-                                        <p className={`alert ${message === 'Login exitoso' ? 'alert-success' : 'alert-danger'}`}>
-                                            {message}
-                                        </p>
-                                    )}
-
-                                    <p>
+                                        {message}
+                                    </Alert>
+                                )}
+                                
+                                <Box textAlign="center" sx={{ mt: 2 }}>
+                                    <Typography variant="body2" sx={{ mb: 1 }}>
                                         ¿No tienes una cuenta?
-                                        <button onClick={requestPin} className="link-info" style={{ background: 'none', border: 'none', color: '#007bff', cursor: 'pointer', textDecoration: 'underline' }}>
-                                            Registrar aquí
-                                        </button>
-                                    </p>
+                                    </Typography>
+                                    <Link
+                                        component="button"
+                                        underline="hover"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            requestPin();
+                                        }}
+                                        color="primary"
+                                        sx={{ fontSize: isSmallScreen ? '0.875rem' : '1rem' }}
+                                    >
+                                        Registrar aquí
+                                    </Link>
+                                </Box>
+                            </form>
+                        </Box>
+                    </Box>
+                </Box>
+            </Box>
 
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {/* Loading Backdrop */}
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={loading}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
 
-            {/* Estilos de fondo y efectos */}
-            <style jsx>{`
+            {/* Global Styles */}
+            <style jsx global>{`
                 html, body {
                     height: 100%;
                     margin: 0;
@@ -129,76 +303,24 @@ const Login = ({ onLoginSuccess }) => {
                 }
 
                 .background-radial-gradient {
-                    min-height: 100vh;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
                     background: hsl(218, 41%, 15%);
-                    background-image: radial-gradient(800px circle at 0% 0%,
-                        hsl(218, 41%, 35%) 15%,
-                        hsl(218, 41%, 30%) 35%,
-                        hsl(218, 41%, 20%) 75%,
-                        hsl(218, 41%, 19%) 80%,
-                        transparent 100%),
+                    background-image: 
+                        radial-gradient(800px circle at 0% 0%,
+                            hsl(218, 41%, 35%) 15%,
+                            hsl(218, 41%, 30%) 35%,
+                            hsl(218, 41%, 20%) 75%,
+                            hsl(218, 41%, 19%) 80%,
+                            transparent 100%),
                         radial-gradient(1250px circle at 100% 100%,
-                        hsl(218, 41%, 45%) 15%,
-                        hsl(218, 41%, 30%) 35%,
-                        hsl(218, 41%, 20%) 75%,
-                        hsl(218, 41%, 19%) 80%,
-                        transparent 100%);
-                }
-
-                #radius-shape-1 {
-                    height: 220px;
-                    width: 220px;
-                    top: -60px;
-                    left: -130px;
-                    background: radial-gradient(#44006b, #ad1fff);
-                    overflow: hidden;
-                }
-
-                #radius-shape-2 {
-                    border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
-                    bottom: -60px;
-                    right: -110px;
-                    width: 300px;
-                    height: 300px;
-                    background: radial-gradient(#44006b, #ad1fff);
-                    overflow: hidden;
-                }
-
-                .bg-glass {
-                    background-color: hsla(0, 0%, 100%, 0.9) !important;
-                    backdrop-filter: saturate(200%) blur(25px);
-                }
-
-                .alert {
-                    margin-top: 15px;
-                    padding: 10px;
-                    border-radius: 5px;
-                }
-
-                .alert-success {
-                    color: green;
-                    border: 1px solid green;
-                    background-color: rgba(0, 255, 0, 0.1);
-                }
-
-                .alert-danger {
-                    color: red;
-                    border: 1px solid red;
-                    background-color: rgba(255, 0, 0, 0.1);
-                }
-
-                .btn-disabled {
-                    background-color: #cccccc;
-                    color: #666666;
-                    cursor: not-allowed;
+                            hsl(218, 41%, 45%) 15%,
+                            hsl(218, 41%, 30%) 35%,
+                            hsl(218, 41%, 20%) 75%,
+                            hsl(218, 41%, 19%) 80%,
+                            transparent 100%);
                 }
             `}</style>
-        </section>
+        </Box>
     );
 };
 
 export default Login;
-
