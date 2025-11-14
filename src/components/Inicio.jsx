@@ -37,7 +37,7 @@ const Inicio = ({ userData, onLogout }) => {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [breakpoints.tablet]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -113,19 +113,19 @@ const Inicio = ({ userData, onLogout }) => {
       fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
     }}>
       {/* Logo */}
-      <div style={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        gap: deviceType === 'mobile' ? '8px' : '10px', 
-        cursor: 'pointer' 
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: deviceType === 'mobile' ? '8px' : '10px',
+        cursor: 'pointer'
       }} onClick={() => navigate('/homepage')}>
-        <img src={Logo} alt="Logo" style={{ 
-          width: deviceType === 'mobile' ? '48px' : '58px', 
-          height: deviceType === 'mobile' ? '44px' : '53px' 
+        <img src={Logo} alt="Logo" style={{
+          width: deviceType === 'mobile' ? '48px' : '58px',
+          height: deviceType === 'mobile' ? '44px' : '53px'
         }} />
-        <span style={{ 
-          fontWeight: 'bold', 
-          fontSize: deviceType === 'mobile' ? '1.4rem' : '1.7rem' 
+        <span style={{
+          fontWeight: 'bold',
+          fontSize: deviceType === 'mobile' ? '1.4rem' : '1.7rem'
         }}>
           <span style={{ color: '#3f2569' }}>Stack</span>
           <span style={{ color: '#e5a60d' }}>Flow</span>
@@ -134,7 +134,7 @@ const Inicio = ({ userData, onLogout }) => {
 
       {/* Menú Hamburguesa para móvil y tableta */}
       <div style={{ display: deviceType !== 'desktop' ? 'block' : 'none' }}>
-        <button 
+        <button
           onClick={toggleMobileMenu}
           style={{
             background: 'none',
@@ -150,9 +150,9 @@ const Inicio = ({ userData, onLogout }) => {
       </div>
 
       {/* Menú principal */}
-      <div 
-        ref={menuRef} 
-        style={{ 
+      <div
+        ref={menuRef}
+        style={{
           position: deviceType === 'desktop' ? 'relative' : 'fixed',
           display: deviceType === 'desktop' ? 'flex' : mobileMenuOpen ? 'flex' : 'none',
           flexDirection: deviceType === 'desktop' ? 'row' : 'column',
@@ -172,7 +172,7 @@ const Inicio = ({ userData, onLogout }) => {
           transition: 'all 0.3s ease'
         }}
       >
-        
+
         {deviceType === 'desktop' && (
           <div
             className="selector"
@@ -189,8 +189,8 @@ const Inicio = ({ userData, onLogout }) => {
 
         {/* Links animados */}
         <motion.div {...linkMotion}>
-          <NavLink 
-            to="/Homepage" 
+          <NavLink
+            to="/Homepage"
             className="nav-link"
             onClick={() => deviceType !== 'desktop' && setMobileMenuOpen(false)}
             onMouseEnter={() => setHoveredLink('Homepage')}
@@ -214,8 +214,8 @@ const Inicio = ({ userData, onLogout }) => {
         </motion.div>
 
         <motion.div {...linkMotion}>
-          <NavLink 
-            to="/cliente/ShowCliente" 
+          <NavLink
+            to="/cliente/ShowCliente"
             className="nav-link"
             onClick={() => deviceType !== 'desktop' && setMobileMenuOpen(false)}
             onMouseEnter={() => setHoveredLink('cliente')}
@@ -242,8 +242,8 @@ const Inicio = ({ userData, onLogout }) => {
         <div
           ref={dropdownRef}
           className="ventas-dropdown"
-          style={{ 
-            position: 'relative', 
+          style={{
+            position: 'relative',
             paddingBottom: '6px',
             margin: deviceType !== 'desktop' ? '0.5rem 0' : '0',
             width: deviceType !== 'desktop' ? '100%' : 'auto'
@@ -293,8 +293,8 @@ const Inicio = ({ userData, onLogout }) => {
               marginLeft: deviceType !== 'desktop' ? (deviceType === 'tablet' ? '1.5rem' : '1rem') : '0',
               width: deviceType !== 'desktop' ? 'calc(100% - 2rem)' : 'auto'
             }}>
-              <NavLink 
-                to="/Venta/VentaForm" 
+              <NavLink
+                to="/Venta/VentaForm"
                 className="nav-link"
                 onClick={() => {
                   deviceType !== 'desktop' && setMobileMenuOpen(false);
@@ -321,8 +321,8 @@ const Inicio = ({ userData, onLogout }) => {
 
               {userData?.rol === 'Administrador' && (
                 <>
-                  <NavLink 
-                    to="/Venta/ShowVentas" 
+                  <NavLink
+                    to="/Venta/ShowVentas"
                     className="nav-link"
                     onClick={() => {
                       deviceType !== 'desktop' && setMobileMenuOpen(false);
@@ -346,8 +346,8 @@ const Inicio = ({ userData, onLogout }) => {
                   >
                     Historial de Ventas
                   </NavLink>
-                  <NavLink 
-                    to="/Venta/ShowDetalleVenta" 
+                  <NavLink
+                    to="/Venta/ShowDetalleVenta"
                     className="nav-link"
                     onClick={() => {
                       deviceType !== 'desktop' && setMobileMenuOpen(false);
@@ -381,8 +381,8 @@ const Inicio = ({ userData, onLogout }) => {
         {userData?.rol === 'Administrador' && (
           <>
             <motion.div {...linkMotion}>
-              <NavLink 
-                to="/proveedor/ShowProveedor" 
+              <NavLink
+                to="/proveedor/ShowProveedor"
                 className="nav-link"
                 onClick={() => deviceType !== 'desktop' && setMobileMenuOpen(false)}
                 onMouseEnter={() => setHoveredLink('proveedor')}
@@ -406,8 +406,8 @@ const Inicio = ({ userData, onLogout }) => {
             </motion.div>
 
             <motion.div {...linkMotion}>
-              <NavLink 
-                to="/producto/ShowProducto" 
+              <NavLink
+                to="/producto/ShowProducto"
                 className="nav-link"
                 onClick={() => deviceType !== 'desktop' && setMobileMenuOpen(false)}
                 onMouseEnter={() => setHoveredLink('producto')}
@@ -431,8 +431,8 @@ const Inicio = ({ userData, onLogout }) => {
             </motion.div>
 
             <motion.div {...linkMotion}>
-              <NavLink 
-                to="/TopProductosChart" 
+              <NavLink
+                to="/TopProductosChart"
                 className="nav-link"
                 onClick={() => deviceType !== 'desktop' && setMobileMenuOpen(false)}
                 onMouseEnter={() => setHoveredLink('dashboard')}
@@ -456,8 +456,8 @@ const Inicio = ({ userData, onLogout }) => {
             </motion.div>
 
             <motion.div {...linkMotion}>
-              <NavLink 
-                to="/FormularioPrediccion" 
+              <NavLink
+                to="/FormularioPrediccion"
                 className="nav-link"
                 onClick={() => deviceType !== 'desktop' && setMobileMenuOpen(false)}
                 onMouseEnter={() => setHoveredLink('prediccion')}
@@ -481,8 +481,8 @@ const Inicio = ({ userData, onLogout }) => {
             </motion.div>
 
             <motion.div {...linkMotion}>
-              <NavLink 
-                to="/PrediccionPorDni" 
+              <NavLink
+                to="/PrediccionPorDni"
                 className="nav-link"
                 onClick={() => deviceType !== 'desktop' && setMobileMenuOpen(false)}
                 onMouseEnter={() => setHoveredLink('PrediccionPorDni')}
@@ -509,15 +509,15 @@ const Inicio = ({ userData, onLogout }) => {
 
         {/* UserDropdown en móvil y tableta */}
         {deviceType !== 'desktop' && userData && (
-          <div style={{ 
+          <div style={{
             marginTop: '1rem',
             width: '100%',
             borderTop: '1px solid #e0e0e0',
             paddingTop: '1rem'
           }}>
-            <UserDropdown 
-              userData={userData} 
-              onLogout={onLogout} 
+            <UserDropdown
+              userData={userData}
+              onLogout={onLogout}
               mobileView={true}
               onItemClick={() => setMobileMenuOpen(false)}
             />
