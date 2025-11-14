@@ -14,7 +14,7 @@ const url = "https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsit
 const ShowProveedores = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'));
+
 
   const [proveedores, setProveedores] = useState([]);
   const [filteredProveedores, setFilteredProveedores] = useState([]);

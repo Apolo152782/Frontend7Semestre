@@ -14,7 +14,7 @@ const url = "http://localhost:8080/api/productos";
 const ShowProducto = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'));
+
 
   const [productos, setProductos] = useState([]);
   const [proveedores, setProveedores] = useState([]);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import * as XLSX from "xlsx";
+
 import "../Style.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
@@ -11,9 +11,7 @@ const ShowDetalleVenta = () => {
   const [detallesVenta, setDetallesVenta] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredDetallesVenta, setFilteredDetallesVenta] = useState([]);
-  const [contadorExportaciones, setContadorExportaciones] = useState(
-    parseInt(localStorage.getItem("contadorExportaciones") || "1", 10)
-  );
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;

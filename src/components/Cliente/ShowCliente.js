@@ -14,7 +14,7 @@ const url = "https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsit
 const ShowCliente = ({ userData }) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'));
+
 
   const [clientes, setClientes] = useState([]);
   const [filteredClientes, setFilteredClientes] = useState([]);
