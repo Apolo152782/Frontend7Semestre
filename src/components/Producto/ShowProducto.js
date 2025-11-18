@@ -9,12 +9,12 @@ import Stack from "@mui/material/Stack";
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-const url = "http://localhost:8080/api/productos";
+const url = "https://backend7semestres-4.onrender.com/api/productos";
 
 const ShowProducto = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const [productos, setProductos] = useState([]);
   const [proveedores, setProveedores] = useState([]);
@@ -71,7 +71,7 @@ const ShowProducto = () => {
   };
 
   const getProveedores = async () => {
-    const respuesta = await axios.get("https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/proveedores");
+    const respuesta = await axios.get("https://backend7semestres-4.onrender.com/api/proveedores");
     setProveedores(respuesta.data);
   };
 

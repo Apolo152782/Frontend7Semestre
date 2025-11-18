@@ -9,7 +9,8 @@ import Stack from "@mui/material/Stack";
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-const url = "https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/clientes";
+const url = "http://localhost:8080/api/clientes";
+
 
 const ShowCliente = ({ userData }) => {
   const theme = useTheme();

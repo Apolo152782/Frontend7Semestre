@@ -70,7 +70,7 @@ const PrediccionPorDni = () => {
     setError('');
 
     try {
-      const response = await fetch(`https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/predecir/dni/${dni}`);
+      const response = await fetch(`https://backend7semestres-4.onrender.com/api/predecir/dni/${dni}`);
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Error al obtener la predicción');

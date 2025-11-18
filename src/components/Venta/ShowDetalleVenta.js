@@ -24,7 +24,7 @@ const ShowDetalleVenta = () => {
     const fetchDetallesVenta = async () => {
       try {
         const response = await axios.get(
-          "https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/detalleventa/listar"
+          "https://backend7semestres-4.onrender.com/detalleventa/listar"
         );
         const ventasOrdenadas = response.data.sort(
           (a, b) => new Date(b.fecha) - new Date(a.fecha)

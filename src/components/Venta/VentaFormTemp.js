@@ -75,7 +75,7 @@ const VentaFormTemp = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/api/clientes/dni/nombre/${codigoCliente}`);
+      const response = await fetch(`https://backend7semestres-4.onrender.com/api/clientes/dni/nombre/${codigoCliente}`);
       if (response.ok) {
         const cliente = await response.json();
         setNombreCliente(cliente.nombre);
@@ -99,7 +99,7 @@ const VentaFormTemp = () => {
       return;
     }
     try {
-      const response = await fetch(`https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/productos/buscar?nombre=${encodeURIComponent(nombre)}`);
+      const response = await fetch(`https://backend7semestres-4.onrender.com/api/productos/buscar?nombre=${encodeURIComponent(nombre)}`);
       if (response.ok) {
         const data = await response.json();
         setProductosEncontrados(data);
@@ -305,7 +305,7 @@ const VentaFormTemp = () => {
         }))
       };
 
-      const response = await fetch('http://localhost:8080/ventas/guardar', {
+      const response = await fetch('https://backend7semestres-4.onrender.com/ventas/guardar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(ventaDataConEvaluacion)

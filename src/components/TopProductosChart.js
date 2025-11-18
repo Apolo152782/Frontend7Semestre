@@ -72,7 +72,7 @@ const TopProductosChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/graficos/top-productos');
+        const response = await axios.get('https://backend7semestres-4.onrender.com/api/graficos/top-productos');
 
         setChartData({
           labels: response.data.map(item => item[0]),

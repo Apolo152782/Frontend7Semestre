@@ -3,7 +3,7 @@ import { Button, Card, Form, InputGroup, Spinner } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import ReactMarkdown from "react-markdown";
 
-const API_BASE = "https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/gemini/chat";
+const API_BASE = "https://backend7semestres-4.onrender.com/api/gemini/chat";
 const USUARIO_ID = "user-123";
 const AI_NAME = "Asistente IA – Gemini";
 

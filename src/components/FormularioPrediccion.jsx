@@ -82,7 +82,7 @@ function FormularioPrediccion() {
 
     try {
       setLoading(true);
-      const response = await axios.post('https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/predecir', form);
+      const response = await axios.post('https://backend7semestres-4.onrender.com/api/predecir', form);
       setResultado(response.data);
     } catch (err) {
       setError(err.response?.data?.message || "Error al procesar la predicción");

@@ -38,7 +38,7 @@ const CreateUser = () => {
             rol
         };
 
-        const response = await fetch('https://backend-stackflow-a9cqgjede9hbgch7.centralus-01.azurewebsites.net/api/createUser', {
+        const response = await fetch('https://backend7semestres-4.onrender.com/api/createUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

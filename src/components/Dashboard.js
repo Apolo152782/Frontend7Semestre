@@ -1,8 +1,7 @@
 import React from 'react';
 import TopProductosChart from './TopProductosChart';
 import VentasMensualesChart from './VentasMensualesChart';
-import InventarioCriticoChart from './InventarioCriticoChart';
-import IngresosMensualesChart from './IngresosMensualesChart';
+
 
 const Dashboard = () => {
     return (
@@ -28,18 +27,6 @@ const Dashboard = () => {
                 <div style={cardStyle}>
                     <h2 style={titleStyle}>💰 Ventas Mensuales</h2>
                     <VentasMensualesChart />
-                </div>
-
-                {/* --- Tarjeta 3: Inventario Crítico --- */}
-                <div style={cardStyle}>
-                    <h2 style={titleStyle}>⚠️ Inventario Crítico</h2>
-                    <InventarioCriticoChart />
-                </div>
-
-                {/* --- Tarjeta 4: Satisfacción Promedio --- */}
-                <div style={cardStyle}>
-                    <h2 style={titleStyle}> Ingresos mensuales</h2>
-                    <IngresosMensualesChart />
                 </div>
             </div>
         </div>
