@@ -3,7 +3,7 @@ import { Button, Card, Form, InputGroup, Spinner } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import ReactMarkdown from "react-markdown";
 
-const API_BASE = "http://localhost:8080/api/gemini/chat";
+const API_BASE = "https://backend7semestres-4.onrender.com/api/gemini/chat";
 const USUARIO_ID = "user-123";
 const AI_NAME = "Asistente IA – Gemini";
 
@@ -220,19 +220,84 @@ const GeminiChat = () => {
 
     return (
         <>
+            {/* estilos responsive específicos del widget */}
+            <style>{`
+                .gemini-chat-fab {
+                    position: fixed;
+                    bottom: 90px;        /* más alto para no chocar con botón de modo nocturno */
+                    right: 25px;
+                    z-index: 1000;
+                }
+
+                @media (max-width: 768px) {
+                    .gemini-chat-fab {
+                        bottom: 80px;
+                        right: 16px;
+                    }
+                }
+
+                .gemini-chat-card {
+                    position: fixed;
+                    bottom: 90px;
+                    right: 25px;
+                    width: 780px;
+                    height: 560px;
+                    max-width: 95vw;
+                    max-height: 75vh;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                @media (max-width: 992px) {
+                    .gemini-chat-card {
+                        right: 16px;
+                        left: 16px;
+                        width: auto;
+                        max-width: none;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .gemini-chat-card {
+                        bottom: 80px;
+                        left: 8px;
+                        right: 8px;
+                        height: 70vh;
+                    }
+                }
+
+                /* layout interno responsivo */
+                .gemini-chat-body {
+                    display: flex;
+                    flex: 1;
+                    min-height: 0;
+                }
+
+                .gemini-chat-sidebar {
+                    width: 260px;
+                }
+
+                @media (max-width: 768px) {
+                    .gemini-chat-body {
+                        flex-direction: column;
+                    }
+                    .gemini-chat-sidebar {
+                        width: 100%;
+                        max-height: 35%;
+                        border-right: none !important;
+                        border-bottom: 1px solid #e3e7f3;
+                    }
+                }
+            `}</style>
+
             {/* Botón flotante */}
             <Button
                 onClick={() => setEstaAbierto(!estaAbierto)}
+                className="gemini-chat-fab"
                 style={{
-                    position: "fixed",
-                    top: "525px",
-
-                    bottom: "25px",
-                    right: "75px",
-                    zIndex: 1000,
                     borderRadius: "50%",
-                    width: "55px",
-                    height: "55px",
+                    width: "60px",
+                    height: "60px",
                     backgroundColor: "#007AFF",
                     border: "none",
                     boxShadow: "0 4px 15px rgba(0,0,0,0.3)",
@@ -244,17 +309,11 @@ const GeminiChat = () => {
             {/* Ventana del chat con sidebar */}
             {estaAbierto && (
                 <Card
+                    className="gemini-chat-card"
                     style={{
-                        position: "fixed",
-                        bottom: "60px", // deja visible la franja azul superior
-                        right: "25px",
-                        width: "700px",
-                        height: "470px",
                         borderRadius: "15px",
                         boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
                         zIndex: 999,
-                        display: "flex",
-                        flexDirection: "column",
                         overflow: "hidden",
                         border: "none",
                     }}
@@ -277,15 +336,14 @@ const GeminiChat = () => {
                         <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                             {AI_NAME}
                         </span>
-
                     </Card.Header>
 
                     {/* Cuerpo con sidebar + mensajes */}
-                    <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
+                    <div className="gemini-chat-body">
                         {/* Sidebar */}
                         <aside
+                            className="gemini-chat-sidebar"
                             style={{
-                                width: 260,
                                 background: "#f0f4ff",
                                 borderRight: "1px solid #e3e7f3",
                                 padding: 10,
