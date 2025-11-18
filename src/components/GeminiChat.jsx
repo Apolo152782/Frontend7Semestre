@@ -3,7 +3,7 @@ import { Button, Card, Form, InputGroup, Spinner } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import ReactMarkdown from "react-markdown";
 
-const API_BASE = "https://backend7semestres-4.onrender.com/api/gemini/chat";
+const API_BASE = "http://localhost:8080/api/gemini/chat";
 const USUARIO_ID = "user-123";
 const AI_NAME = "Asistente IA – Gemini";
 
@@ -225,12 +225,14 @@ const GeminiChat = () => {
                 onClick={() => setEstaAbierto(!estaAbierto)}
                 style={{
                     position: "fixed",
+                    top: "525px",
+
                     bottom: "25px",
-                    right: "25px",
+                    right: "75px",
                     zIndex: 1000,
                     borderRadius: "50%",
-                    width: "60px",
-                    height: "60px",
+                    width: "55px",
+                    height: "55px",
                     backgroundColor: "#007AFF",
                     border: "none",
                     boxShadow: "0 4px 15px rgba(0,0,0,0.3)",
@@ -246,8 +248,8 @@ const GeminiChat = () => {
                         position: "fixed",
                         bottom: "60px", // deja visible la franja azul superior
                         right: "25px",
-                        width: "780px",
-                        height: "560px",
+                        width: "700px",
+                        height: "470px",
                         borderRadius: "15px",
                         boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
                         zIndex: 999,
